@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+// Utility classes
+.flex {
+  display: flex;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dark-blue {
+  text-align: center;
+  color: #0A1540;
+}
+
+.light-blue {
+ color: #93D1F9;
+}
+
+.monoton {
+  font-family: Monoton;
+}
+
+
+// Element styles
+body {
+  height: 100vh;
+  background-color: #3D5E9B;
+  font-family: "Oswald", sans-serif;
+}
+
+h1, h2 {
+  font-size: 7em;
+  text-align: center;
+  font-weight: 400;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 1.5em;
+  padding: .5em;
+  background-color: rgba(255,255,255,.7);
+  text-transform: uppercase;
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.46);
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: justify;
+}
+
+// Component styles
+#app {
+  max-width: 1600px;
+  margin: auto;
+  padding: 1em 0 1em 0;
+}
+
+#gallery-bio-container {
+  margin-top: 4em;
+  width: 100%;
+  align-items: flex-end;
+}
+
+#bio {
+  width: 33.333%;
+  padding: 2em;
+}
+
+#vertical-divider {
+  width: 66.666%;
+  margin: 4em  auto;
+  border-bottom: 1px solid #0A1540;
+}
+
+.image-gallery {
+  width: 66.666%;
+  padding: 2em;
+
+  .image-gallery-slides {
+    max-height: 60vh;
+    margin: auto;
+  }
+}
+  
+
+// Mobile styles
+@media screen and (max-width: 500px) {
+  .mobile-stack {
+    flex-direction: column;
+  }
+
+  .mobile-reverse {
+    flex-direction: column-reverse;
+  }
+
+  body {
+    padding: 1em;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin: .3em auto .3em auto;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    font-size: .8em;
+  }
+
+  #gallery-bio-container {
+    margin: 2em auto;
+  }
+
+  #bio {
+    width: 100%;
+  }
+
+  .image-gallery {
+    width: 100%;
+  }
+
+
+}
