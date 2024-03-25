@@ -4,11 +4,16 @@ import { Gallery } from './Gallery';
 import { Bio } from './Bio';
 import { Video } from './Video';
 import { Divider } from './Divider';
+import neonlogo from './neonlogo.svg';
 
 function App() {
   return (
     <div id="app">
-      <h1 id="hero" className="monoton light-blue">THE<br/> OPALITES</h1>
+      <div id="hero">
+        <div id="hero-overlay"/>
+        <h1 id="hero-text" className="monoton neon-blue">THE<br/> OPALITES</h1>
+      </div>
+      {/* <img id="hero-image" src={neonlogo}/> */}
       <Nav/>
       <div id="gallery-bio-container" className="flex mobile-stack mobile-reverse">
         <Gallery/>
