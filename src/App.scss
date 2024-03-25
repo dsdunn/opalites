@@ -18,6 +18,10 @@
   width: 100%;
 }
 
+.light-blue {
+  color: #89cefc
+}
+
 .dark-blue {
   text-align: center;
   color: #0A1540;
@@ -67,15 +71,28 @@
 // Element styles
 body {
   height: 100vh;
-  // background-color: #3D5E9B;
   background-color: black;
   font-family: "Oswald", sans-serif;
 }
 
-h1, h2 {
+h1 {
   font-size: 4.5em;
   text-align: center;
   font-weight: 400;
+}
+
+h2, h3, h4, h5 {
+  font-weight: 300;
+  font-family: "Oswald", sans-serif;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2em;
+  text-transform: uppercase;
 }
 
 ul {
@@ -86,9 +103,7 @@ li {
   font-size: 1.8em;
   font-stretch: expanded;
   padding: .5em;
-  // background-color: rgba(255,255,255,.7);
   text-transform: uppercase;
-  // box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.46);
 }
 
 p {
@@ -108,14 +123,13 @@ p {
 
 #hero {
   position: relative;
-  height: 60vh;
+  height: 70vh;
   width: 100%;
   // background: top no-repeat url('./neonlogo.svg');
-  background: top no-repeat url('./OpalitesChristmas.jpeg');
-  margin: 5% auto 0% auto;
+  background: top no-repeat url('./assets/OpalitesChristmas.jpeg');
+  margin: 0 auto 0 auto;
 
   h1 {
-    // padding-top: 0em;
     position: relative;
     z-index: 3;
   }
@@ -131,7 +145,43 @@ p {
 #nav {
   position: relative; // needed for z-index
   z-index: 3;
-  margin: 1em auto;
+  margin: 2em auto;
+}
+
+#cta {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 14em auto;
+  padding: 1em;
+  letter-spacing: .2em;
+
+  #release-image {
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      figcaption {
+        text-shadow: 0 8px 17px #ff7b7b
+      }
+
+      img {
+        box-shadow: 0 0 25px 4px #5b0808;
+      }
+    }
+
+    img {
+      width: 25vw;
+      max-width: 450px;
+      box-shadow: 0 0 25px 4px #48335f;
+    }
+    
+    figcaption {
+      text-align: center;
+      padding: .4em;
+    }
+
+  }
 }
 
 #gallery-bio-container {

@@ -4,7 +4,7 @@ import { Gallery } from './Gallery';
 import { Bio } from './Bio';
 import { Video } from './Video';
 import { Divider } from './Divider';
-import neonlogo from './neonlogo.svg';
+import { CTA } from './CTA';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
         <div id="hero-overlay"/>
         <h1 id="hero-text" className="monoton neon-blue">THE<br/> OPALITES</h1>
       </div>
-      {/* <img id="hero-image" src={neonlogo}/> */}
       <Nav/>
+      <CTA />
       <div id="gallery-bio-container" className="flex mobile-stack mobile-reverse">
         <Gallery/>
         <Bio/>
