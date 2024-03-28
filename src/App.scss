@@ -57,6 +57,32 @@
     0 0 151px #084772,
 }
 
+@keyframes flicker-blue {
+  0%, 4%, 15%, 35%, 100% {
+    text-shadow:
+      0 0 6px #fff,
+      0 0 7px #fff,
+      // 0 0 11px #fff,
+      0 0 42px #3aaaf5,
+      0 0 82px #3aaaf5,
+      0 0 92px #2990d4,
+      0 0 102px #2077b0,
+      0 0 141px #084772,
+  }
+
+  3%, 9%, 30%, 45% {       
+    text-shadow:
+      0 0 1px #fff,
+      0 0 4px #fff,
+      // 0 0 11px #fff,
+      0 0 30px #3aaaf5,
+      0 0 65px #3aaaf5,
+      0 0 40px #2990d4,
+      0 0 90px #2077b0,
+      0 0 130px #084772,
+  }
+}
+
 .monoton {
   font-family: Monoton;
 }
@@ -82,6 +108,23 @@
     0 0 92px #c00918,
     0 0 102px #c00918,
     0 0 151px #c00918,
+}
+
+@keyframes flicker-red {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      // 0 0 6px #fff,
+    0 0 7px #fff,
+    // 0 0 21px #fff,
+    0 0 42px #c00918,
+    0 0 82px #c00918,
+    0 0 92px #c00918,
+    0 0 102px #c00918,
+    0 0 151px #c00918,
+  }
+  20%, 24%, 55% {       
+    text-shadow: none;
+  }
 }
 
 
@@ -123,7 +166,7 @@ ul {
 li {
   font-size: 2em;
   font-stretch: expanded;
-  padding: .5em;
+  padding: .1em .2em;
   text-transform: uppercase;
 }
 
@@ -152,6 +195,7 @@ p {
   h1 {
     position: relative;
     z-index: 3;
+    animation: flicker-blue 10s infinite alternate;
   }
 
   #hero-overlay {
@@ -168,6 +212,13 @@ p {
   z-index: 3;
   margin: 2em auto;
   background: linear-gradient(rgba(0,0,0,1) 75%, rgba(1,1,1,0));
+  cursor: pointer;
+
+  li.currently-selected {
+    border: 2px solid #17a295;
+    border-radius: 5px;
+    animation: flicker-red 1.5s infinite alternate;
+  }
 }
 
 #music {
@@ -343,6 +394,12 @@ p {
         align-self: flex-start;
         margin-left: .8em;
        }
+    }
+  }
+
+  #shows {
+    .show-date {
+      margin: auto .5em;
     }
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Divider = () => (
-  <div className="vertical-divider" />
+export const Divider = ({ navId }) => (
+  <div id={navId} className="vertical-divider" />
 )
