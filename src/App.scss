@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon:XROT,YROT@-45..45,-45..45&display=swap');
+
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+// Utility classes
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.light-blue {
+  color: #89cefc
+}
+
+.dark-blue {
+  text-align: center;
+  color: #0A1540;
+}
+
+.neon-blue {
+ color: #eaf2f7;
+ text-shadow:
+    0 0 6px #fff,
+    0 0 7px #fff,
+    // 0 0 11px #fff,
+    0 0 42px #3aaaf5,
+    0 0 82px #3aaaf5,
+    0 0 92px #2990d4,
+    0 0 102px #2077b0,
+    0 0 151px #084772,
+}
+
+@keyframes flicker-blue {
+  0%, 4%, 15%, 35%, 100% {
+    text-shadow:
+      0 0 6px #fff,
+      0 0 7px #fff,
+      // 0 0 11px #fff,
+      0 0 42px #3aaaf5,
+      0 0 82px #3aaaf5,
+      0 0 92px #2990d4,
+      0 0 102px #2077b0,
+      0 0 141px #084772,
+  }
+
+  3%, 9%, 30%, 45% {       
+    text-shadow:
+      0 0 1px #fff,
+      0 0 4px #fff,
+      // 0 0 11px #fff,
+      0 0 30px #3aaaf5,
+      0 0 65px #3aaaf5,
+      0 0 40px #2990d4,
+      0 0 90px #2077b0,
+      0 0 130px #084772,
+  }
+}
+
+.monoton {
+  font-family: Monoton;
+}
+
+.tilt-neon {
+  font-family: "Tilt Neon", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "XROT" 40,
+    "YROT" 0;
+}
+
+.neon-red {
+  color: #fbdfdf;
+  text-shadow:
+    // 0 0 6px #fff,
+    0 0 7px #fff,
+    // 0 0 21px #fff,
+    0 0 42px #c00918,
+    0 0 82px #c00918,
+    0 0 92px #c00918,
+    0 0 102px #c00918,
+    0 0 151px #c00918,
+}
+
+@keyframes flicker-red {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      // 0 0 6px #fff,
+    0 0 7px #fff,
+    // 0 0 21px #fff,
+    0 0 42px #c00918,
+    0 0 82px #c00918,
+    0 0 92px #c00918,
+    0 0 102px #c00918,
+    0 0 151px #c00918,
+  }
+  20%, 24%, 55% {       
+    text-shadow: none;
+  }
+}
+
+
+// Element styles
+body {
+  height: 100vh;
+  background-color: black;
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  font-size: 4.5em;
+  text-align: center;
+  font-weight: 400;
+  margin: 20px auto;
+}
+
+h2, h3, h4, h5 {
+  font-weight: 300;
+  font-family: "Oswald", sans-serif;
+}
+
+h2 {
+  font-size: 2.5rem;
+
+  &.section-header {
+    text-align: center;
+  }
+}
+
+h3 {
+  font-size: 1.8rem;
+
+  &.subtitle {
+    margin: 10px auto;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  font-size: 2em;
+  font-stretch: expanded;
+  padding: .1em .2em;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3em;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: justify;
+}
+
+// Component styles
+#app {
+  max-width: 1600px;
+  margin: auto;
+  padding: 1em 0 1em 0;
+}
+
+#hero {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  background: top no-repeat url('./assets/OpalitesChristmas.jpeg');
+  margin: 0 auto 0 auto;
+
+  h1 {
+    position: relative;
+    z-index: 3;
+    animation: flicker-blue 10s infinite alternate;
+  }
+
+  #hero-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(177,176,187,0) 12%, rgba(1,1,1,0) 98%, rgba(0,0,0,1) 100%);
+  }
+}
+
+#nav {
+  position: sticky;
+  top: 0px; 
+  z-index: 3;
+  margin: 2em auto;
+  background: linear-gradient(rgba(0,0,0,1) 75%, rgba(1,1,1,0));
+  cursor: pointer;
+
+  li.currently-selected {
+    border: 2px solid #17a295;
+    border-radius: 5px;
+    animation: flicker-red 1.5s infinite alternate;
+  }
+}
+
+#music {
+  align-items: center;
+  margin: 2em auto;
+  padding: 1em;
+  letter-spacing: .2em;
+
+  #release-image {
+    color: white;
+
+    figcaption { 
+      text-align: center;
+      font-size: .8em;
+      padding: .5em;
+    }
+
+    &:hover {
+      cursor: pointer;
+      figcaption {
+        text-shadow: 0 8px 17px #ff7b7b
+      }
+
+      img {
+        box-shadow: 0 0 25px 4px #d36ec5;
+      }
+    }
+
+    img {
+      width: 25vw;
+      max-width: 450px;
+      box-shadow: 0 0 25px 2px #792e2e;
+    }
+  }
+
+  .streaming {
+    width: 100%;
+    margin: 4em auto 0 auto;
+
+    a {
+      cursor: pointer;
+      margin: 0 2em;
+
+      img {
+        height: 2.5em;
+      }
+    }
+  }
+}
+
+#video {
+  margin: 2em auto;
+
+  .react-player {
+    margin: 2em;
+  }
+}
+
+#shows {
+  margin: auto;
+
+  .show-date {
+    font-weight: 400;
+    font-size: 3rem;
+    margin: auto 2em;
+  }
+}
+  
+#bio {
+  max-width: 900px;
+  line-height: 1.5em;
+  padding: 0.5em;
+  margin: 0 auto;
+}
+
+.image-gallery {
+  padding: 2em;
+
+  .image-gallery-slides {
+    max-height: 60vh;
+    margin: auto;
+  }
+}
+
+
+.vertical-divider {
+  width: 50%;
+  margin: 9em  auto;
+  border-bottom: 1px solid #4d89e3;
+}
+
+#contact-link {
+  text-shadow: none;
+  color: white;
+}
+
+@media screen and (max-width: 1400px) {
+  .vertical-divider {
+    margin: 6em auto;
+  }
+}
+  
+
+// Mobile styles
+@media screen and (max-width: 600px) {
+  .mobile-stack {
+    flex-direction: column;
+  }
+
+  .mobile-reverse {
+    flex-direction: column-reverse;
+  }
+
+  h1 {
+    font-size: 4em;
+    margin: .3em auto .3em auto;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+  
+  h3 {
+    font-size: 1.2em;
+    text-transform: uppercase;
+  
+    &.subtitle {
+      margin: 50px auto;
+    }
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    font-size: .8em;
+  }
+
+  #hero {
+    height: 100%;
+    background: black;
+
+    #hero-overlay {
+      display: none;
+    }
+  }
+
+  .vertical-divider {
+    margin: 1em auto;
+  }
+
+  .section-header {
+    margin-top: 1.5em;
+  }
+
+  .react-player {
+    margin: auto;
+  }
+
+  #music {
+    h2 {
+      text-align: center;
+    }
+    #release-image img {
+      width: 60vw
+    }
+
+    .streaming {
+      flex-direction: column;
+      align-items: flex-center;
+
+       * {
+        margin: 0 auto 1em auto;
+       }
+
+       h3 {
+        align-self: flex-start;
+        margin-left: .8em;
+       }
+    }
+  }
+
+  #shows {
+    .show-date {
+      margin: auto .5em;
+    }
+  }
+
+  #bio {
+    font-size: 1em;
+  }
+}
