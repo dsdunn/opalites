@@ -193,7 +193,7 @@ p {
   position: relative;
   height: 80vh;
   width: 100%;
-  background: top no-repeat url('https://s3.console.aws.amazon.com/s3/object/band-media-bucket?region=us-west-2&bucketType=general&prefix=opalites/OpalitesChristmas.jpeg');
+  background: top no-repeat url('https://band-media-bucket.s3.us-west-2.amazonaws.com/opalites/OpalitesChristmas.jpeg');
   margin: 0 auto 0 auto;
 
   h1 {
