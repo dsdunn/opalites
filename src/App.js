@@ -36,15 +36,22 @@ function App() {
       </div>
       <Nav select={select} selected={selected}/>
       <Divider navId="nav-music"/>
+      <h2 className="neon-blue section-header">Music</h2>
       <Music/>
       <Divider navId="nav-video"/>
+      <h2 className="neon-blue section-header">Video</h2>
       <Video/>
       <Divider navId="nav-shows"/>
+      <h2 className="neon-blue section-header">Shows</h2>
       <Shows/>
-      {/* <div id="about" className="flex mobile-stack mobile-reverse">
-        <Gallery/>
-        <Bio/>
-      </div> */}
+      <Divider navId="nav-about"/>
+      <h2 className="neon-blue section-header">About</h2>
+      <Bio/>
+      <Divider navId="nav-gallery"/>
+      <h2 className="neon-blue section-header">Gallery</h2>
+      <Gallery/>
+      <Divider navId="end"/>
+      <h2 id="contact-link" className="neon-blue section-header">Contact: <a className="light-blue" href="mailto: theopalitesmusic@gmail.com">theopalitesmusic@gmail.com</a></h2>
     </div>
   )
 }
