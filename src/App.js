@@ -4,7 +4,8 @@ import { Gallery } from './Gallery';
 import { Bio } from './Bio';
 import { Video } from './Video';
 import { Divider } from './Divider';
-import { CTA } from './CTA';
+import { Music } from './Music';
+import { Shows } from './Shows';
 
 function App() {
   return (
@@ -12,15 +13,19 @@ function App() {
       <div id="hero">
         <div id="hero-overlay"/>
         <h1 id="hero-text" className="monoton neon-blue">THE<br/> OPALITES</h1>
+        <h3 className="subtitle light-blue text-center">Ska - Rocksteady - Reggae</h3>
       </div>
       <Nav/>
-      <CTA />
-      <div id="gallery-bio-container" className="flex mobile-stack mobile-reverse">
-        <Gallery/>
-        <Bio/>
-      </div>
+      <Divider/>
+      <Music/>
       <Divider/>
       <Video/>
+      <Divider/>
+      <Shows/>
+      {/* <div id="about" className="flex mobile-stack mobile-reverse">
+        <Gallery/>
+        <Bio/>
+      </div> */}
     </div>
   )
 }

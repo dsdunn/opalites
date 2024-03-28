@@ -8,14 +8,31 @@
 // Utility classes
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .justify-around {
   justify-content: space-around;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 .full-width {
   width: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .light-blue {
@@ -79,6 +96,7 @@ h1 {
   font-size: 4.5em;
   text-align: center;
   font-weight: 400;
+  margin: 20px auto;
 }
 
 h2, h3, h4, h5 {
@@ -87,12 +105,15 @@ h2, h3, h4, h5 {
 }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 2.5rem;
 }
 
 h3 {
-  font-size: 2em;
-  text-transform: uppercase;
+  font-size: 1.8rem;
+
+  &.subtitle {
+    margin: 10px auto;
+  }
 }
 
 ul {
@@ -100,7 +121,7 @@ ul {
 }
 
 li {
-  font-size: 1.8em;
+  font-size: 2em;
   font-stretch: expanded;
   padding: .5em;
   text-transform: uppercase;
@@ -123,9 +144,8 @@ p {
 
 #hero {
   position: relative;
-  height: 70vh;
+  height: 80vh;
   width: 100%;
-  // background: top no-repeat url('./neonlogo.svg');
   background: top no-repeat url('./assets/OpalitesChristmas.jpeg');
   margin: 0 auto 0 auto;
 
@@ -143,21 +163,27 @@ p {
 }
 
 #nav {
-  position: relative; // needed for z-index
+  position: sticky;
+  top: 0px; 
   z-index: 3;
   margin: 2em auto;
+  background: linear-gradient(rgba(0,0,0,1) 75%, rgba(1,1,1,0));
 }
 
-#cta {
-  display: flex;
-  justify-content: space-around;
+#music {
   align-items: center;
-  margin: 14em auto;
+  margin: 2em auto;
   padding: 1em;
   letter-spacing: .2em;
 
   #release-image {
     color: white;
+
+    figcaption { 
+      text-align: center;
+      font-size: .8em;
+      padding: .5em;
+    }
 
     &:hover {
       cursor: pointer;
@@ -166,25 +192,51 @@ p {
       }
 
       img {
-        box-shadow: 0 0 25px 4px #5b0808;
+        box-shadow: 0 0 25px 4px #d36ec5;
       }
     }
 
     img {
       width: 25vw;
       max-width: 450px;
-      box-shadow: 0 0 25px 4px #48335f;
+      box-shadow: 0 0 25px 2px #792e2e;
     }
-    
-    figcaption {
-      text-align: center;
-      padding: .4em;
-    }
+  }
 
+  .streaming {
+    width: 100%;
+    margin: 4em auto 0 auto;
+
+    a {
+      cursor: pointer;
+      margin: 0 2em;
+
+      img {
+        height: 2.5em;
+      }
+    }
   }
 }
 
-#gallery-bio-container {
+#video {
+  margin: 2em auto;
+
+  .react-player {
+    margin: 2em;
+  }
+}
+
+#shows {
+  margin: auto;
+
+  .show-date {
+    font-weight: 400;
+    font-size: 3rem;
+    margin: auto 2em;
+  }
+}
+
+#about {
   margin-top: 4em;
   width: 100%;
   align-items: flex-end;
@@ -195,10 +247,10 @@ p {
   padding: 2em;
 }
 
-#vertical-divider {
-  width: 66.666%;
-  margin: 4em  auto;
-  border-bottom: 1px solid #0A1540;
+.vertical-divider {
+  width: 50%;
+  margin: 9em  auto;
+  border-bottom: 1px solid #4d89e3;
 }
 
 .image-gallery {
@@ -210,10 +262,16 @@ p {
     margin: auto;
   }
 }
+
+@media screen and (max-width: 1400px) {
+  .vertical-divider {
+    margin: 6em auto;
+  }
+}
   
 
 // Mobile styles
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .mobile-stack {
     flex-direction: column;
   }
@@ -222,13 +280,22 @@ p {
     flex-direction: column-reverse;
   }
 
-  body {
-    padding: 1em;
-  }
-
   h1 {
     font-size: 4em;
     margin: .3em auto .3em auto;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  h3 {
+    font-size: 1em;
+    text-transform: uppercase;
+  
+    &.subtitle {
+      margin: 50px auto;
+    }
   }
 
   ul {
@@ -239,7 +306,47 @@ p {
     font-size: .8em;
   }
 
-  #gallery-bio-container {
+  #hero {
+    height: 100%;
+    background: black;
+
+    #hero-overlay {
+      display: none;
+    }
+  }
+
+  .vertical-divider {
+    margin: 1em auto;
+  }
+
+  .react-player {
+    margin: auto;
+  }
+
+  #music {
+    h2 {
+      text-align: center;
+    }
+    #release-image img {
+      width: 60vw
+    }
+
+    .streaming {
+      flex-direction: column;
+      align-items: flex-center;
+
+       * {
+        margin: 0 auto 1em auto;
+       }
+
+       h3 {
+        align-self: flex-start;
+        margin-left: .8em;
+       }
+    }
+  }
+
+  #about {
     margin: 2em auto;
   }
 
