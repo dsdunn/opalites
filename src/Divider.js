@@ -1,5 +1,5 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-export const Divider = ({ navId }) => (
-  <div id={navId} className="vertical-divider" />
-)
+export const Divider = forwardRef(({ navId }, ref) => (
+  <div id={navId} className="vertical-divider" ref={ref} />
+));

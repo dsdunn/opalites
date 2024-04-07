@@ -11,6 +11,10 @@
   flex-wrap: wrap;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .justify-around {
   justify-content: space-around;
 }
@@ -29,6 +33,10 @@
 
 .full-width {
   width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .text-center {
@@ -165,12 +173,13 @@ h3 {
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 li {
   font-size: 2em;
   font-stretch: expanded;
-  padding: .1em .2em;
+  padding: .2em .4em;
   text-transform: uppercase;
 }
 
@@ -184,6 +193,7 @@ p {
 
 // Component styles
 #app {
+  position: relative;
   max-width: 1600px;
   margin: auto;
   padding: 1em 0 1em 0;
@@ -198,7 +208,7 @@ p {
 
   h1 {
     position: relative;
-    z-index: 3;
+    z-index: 2;
     animation: flicker-blue 10s infinite alternate;
   }
 
@@ -211,15 +221,29 @@ p {
 }
 
 #nav {
-  position: sticky;
+  position: fixed;
   top: 0px; 
+  right: 5vw;
   z-index: 3;
-  margin: 2em auto;
+  padding-right: 1em;
   background: linear-gradient(rgba(0,0,0,1) 75%, rgba(1,1,1,0));
   cursor: pointer;
 
-  li.currently-selected {
-    border: 2px solid #17a295;
+  h3 {
+    // margin: 0 2em 0 0;
+    text-align: right;
+  }
+
+  ul {
+    display: none;
+    margin: 2em;
+  }
+
+  ul.expanded {
+    display: flex;
+  }
+
+  li.selected {
     border-radius: 5px;
     animation: flicker-red 1.5s infinite alternate;
   }
@@ -355,11 +379,11 @@ p {
   }
 
   ul {
-    padding: 0;
+    margin: 1em auto;
   }
 
   li {
-    font-size: .8em;
+    font-size: 1.5em;
   }
 
   #hero {

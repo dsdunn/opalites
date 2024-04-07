@@ -5,7 +5,7 @@ export const Video = () => {
   return (
     <div id="video" className="flex justify-around">
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=I4ZZ6sl_Msw"
+        url="https://www.youtube.com/watch?v=JNQzljTVZsI"
         controls={true}
         className="react-player"
       />
