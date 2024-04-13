@@ -199,6 +199,17 @@ p {
   padding: 1em 0 1em 0;
 }
 
+#social-links {
+  justify-content: center;
+  margin-bottom: 4em;
+
+  img {
+    height: 2.5em;
+    margin: 0 1em;
+    background: black;
+  }
+}
+
 #hero {
   position: relative;
   height: 80vh;
@@ -223,15 +234,13 @@ p {
 #nav {
   position: fixed;
   top: 0px; 
-  right: 5vw;
   z-index: 3;
-  padding-right: 1em;
+  padding: 1em;
   background: linear-gradient(rgba(0,0,0,1) 75%, rgba(1,1,1,0));
   cursor: pointer;
 
   h3 {
-    // margin: 0 2em 0 0;
-    text-align: right;
+   margin-top: 0.5em;
   }
 
   ul {
@@ -307,6 +316,7 @@ p {
 
 #shows {
   margin: auto;
+  padding-left: 15%;
 
   .show-date {
     font-weight: 400;
@@ -323,10 +333,9 @@ p {
 }
 
 .image-gallery {
-  padding: 2em;
 
   .image-gallery-slides {
-    max-height: 60vh;
+    // max-height: 60vh;
     margin: auto;
   }
 }
@@ -431,8 +440,24 @@ p {
   }
 
   #shows {
+    padding-left: 0;
+
+    .show {
+      flex-wrap: nowrap;
+    }
+
+    h2 {
+      font-size: 1em;
+      margin: 0;
+    }
+
+    h3 {
+      font-size: .8em;
+    }
+
     .show-date {
       margin: auto .5em;
+      font-size: 1em;
     }
   }
 

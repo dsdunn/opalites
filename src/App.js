@@ -7,12 +7,15 @@ import { Video } from './Video';
 import { Divider } from './Divider';
 import { Music } from './Music';
 import { Shows } from './Shows';
+import { SocialLinks } from './SocialLinks';
 
 function App() {
   const musicRef = useRef();
   const videoRef = useRef();
   const showsRef = useRef();
   const bioRef = useRef();
+  const galleryRef = useRef();
+  const contactRef = useRef();
 
   const [ selected, setSelected ] = useState(null);
   
@@ -20,7 +23,9 @@ function App() {
     music: musicRef,
     video: videoRef,
     shows: showsRef,
-    bio: bioRef
+    bio: bioRef,
+    gallery: galleryRef,
+    contact: contactRef
   }
 
   const select = (target) => {
@@ -48,11 +53,12 @@ function App() {
       <Divider navId="nav-about" ref={bioRef}/>
       <h2 className="neon-blue section-header">About</h2>
       <Bio/>
-      <Divider navId="nav-gallery"/>
+      <Divider navId="nav-gallery" ref={galleryRef}/>
       <h2 className="neon-blue section-header">Gallery</h2>
       <Gallery/>
-      <Divider navId="end"/>
+      <Divider navId="nav-contact" ref={contactRef}/>
       <h2 id="contact-link" className="neon-blue section-header">Contact: <a className="light-blue" href="mailto: theopalitesmusic@gmail.com">theopalitesmusic@gmail.com</a></h2>
+      <SocialLinks/>
     </div>
   )
 }

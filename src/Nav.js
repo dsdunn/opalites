@@ -18,7 +18,9 @@ export const Nav = ({ select, selected }) => {
         <li className={selected === "music" ? 'selected' : ''} onClick={() => handleClick('music')}>Music</li>
         <li className={selected === "video" ? 'selected' : ''} onClick={() => handleClick('video')}>Video</li>
         <li className={selected === "shows" ? 'selected' : ''} onClick={() => handleClick('shows')}>Shows</li>
-        <li className={selected === "about" ? 'selected' : ''} onClick={() => handleClick('about')}>About</li>
+        <li className={selected === "bio" ? 'selected' : ''} onClick={() => handleClick('bio')}>About</li>
+        <li className={selected === "gallery" ? 'selected' : ''} onClick={() => handleClick('gallery')}>Gallery</li>
+        <li className={selected === "contact" ? 'selected' : ''} onClick={() => handleClick('contact')}>Contact</li>
       </ul>
     </div>
   )
