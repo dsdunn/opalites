@@ -59,6 +59,7 @@ function App() {
       <Divider navId="nav-contact" ref={contactRef}/>
       <h2 id="contact-link" className="neon-blue section-header">Contact: <a className="light-blue" href="mailto: theopalitesmusic@gmail.com">theopalitesmusic@gmail.com</a></h2>
       <SocialLinks/>
+      <h3 id="footer" className="neon-red" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to Top</h3>
     </div>
   )
 }

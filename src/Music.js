@@ -21,10 +21,11 @@ export const Music = () => {
       </div>
       <div className="streaming flex justify-center align-center light-blue uppercase">
         <h3 className="uppercase">Streaming:</h3>
-        <a href="https://open.spotify.com/artist/4Lv94Y3hWN7BtiEe7vzXVW?si=MO3REJ_IRTCsb1lknrO2jg"><img src={Spotify}></img></a>
-        <a href="https://music.apple.com/us/artist/the-opalites/1727961912"><img src={AppleMusic}></img></a>
-        <a href="https://theopalites.bandcamp.com/"><img src={BandCamp}/></a>
+        <a target="_blank" href="https://open.spotify.com/artist/4Lv94Y3hWN7BtiEe7vzXVW?si=MO3REJ_IRTCsb1lknrO2jg"><img src={Spotify}></img></a>
+        <a target="_blank" href="https://music.apple.com/us/artist/the-opalites/1727961912"><img src={AppleMusic}></img></a>
+        <a target="_blank" href="https://theopalites.bandcamp.com/"><img src={BandCamp}/></a>
       </div>
+      <iframe style={{borderRadius: '12px'}} src="https://open.spotify.com/embed/artist/4Lv94Y3hWN7BtiEe7vzXVW?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   )
 }
