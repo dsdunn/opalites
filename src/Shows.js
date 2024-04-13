@@ -12,7 +12,7 @@ export const Shows = () => {
   {
     date: '8/11',
     time: '7pm',
-    image: 'https://scontent-den2-1.xx.fbcdn.net/v/t39.30808-6/370374601_810282647452242_1402649304965174958_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=JyhpSoHj7fkAb4zr2FU&_nc_ht=scontent-den2-1.xx&oh=00_AfBW-4H30DJuyLi2ZPjrdZsEmvVIT7xY5nZNhlU2D4oTCA&oe=6618EDA2',
+    image: null,
     venue: '1010 Workshop',
     title: 'Anniversary Party with The Opalites live',
     url: 'https://www.facebook.com/1010Workshop/'
@@ -24,7 +24,9 @@ export const Shows = () => {
           <li className="show flex light-blue">
             <h2 className="show-date">{show.date}</h2>
             <div>
-              <a href={show.url} target="_blank"><h2>{show.venue}</h2></a>
+              <a href={show.url} target="_blank"><h2>{show.venue}</h2>
+                {/* { show?.image && <img src={show.image} height="50px" width="50px"/> } */}
+              </a>
               <h3>{show.title}</h3>
             </div>
           </li>
