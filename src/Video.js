@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactPlayer from 'react-player/lazy'
 
-export const Video = () => {
+export const Video = ({ videos = [] }) => {
   return (
     <div id="video" className="flex justify-around">
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=JNQzljTVZsI"
-        controls={true}
-        className="react-player"
-      />
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=fw-V5S2z_Aw&t=73s"
-        controls={true}
-        className="react-player"
-      />
+      { videos.map(video => {
+        return (
+          <ReactPlayer
+            url={video}
+            controls={true}
+            className="react-player"
+          />
+        );
+      })}
     </div>
   )
 }

@@ -9,7 +9,7 @@ export const Music = () => {
     <div id="music">
       <div className="flex justify-around align-center">
         <div id="release-text" class="light-blue">
-          <h3 className="uppercase"><emphasis>Dual Single Out Now!</emphasis></h3>
+          <h3 className="uppercase">Dual Single Out Now!</h3>
           <h2>"Think About Me" | "Everyday"</h2>
         </div>
         <a href="https://theopalites.bandcamp.com/album/think-about-me-everyday">
