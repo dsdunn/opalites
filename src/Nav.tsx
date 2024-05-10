@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-export const Nav = ({ select, selected }) => {
+export const Nav = ({ select, selected }: { select: (section: string) => void, selected: string }) => {
   const [ menuOpen, setMenuOpen ] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   }
 
-  const handleClick = (selection) => {
+  const handleClick = (selection: string) => {
     select(selection);
     setMenuOpen(false);
   }

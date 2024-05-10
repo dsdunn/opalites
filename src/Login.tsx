@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { loginUser } from './apiService';
 
-export const Login = ({ isOpen, onClose, setUser, setUserName }) => {
+export const Login = ({ isOpen, onClose, setUser, setUserName }: {
+  isOpen: boolean,
+  onClose: () => void,
+  setUser: (user: any) => void,
+  setUserName: (name: string) => void
+}) => {
   const [username, _setUsername] = useState('');
   const [password, _setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const userAuth = await loginUser({ username, password });
     userAuth && setUser(userAuth)

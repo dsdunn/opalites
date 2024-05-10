@@ -1,6 +1,7 @@
 import React from 'react';
-
-export const Bio = ({info}) => {
+import { BandInfo
+ } from './types';
+export const Bio = ({ info }: { info: BandInfo | undefined}) => {
   return (
     <>
       <p id="bio" className="light-blue">{info?.bio1}</p>

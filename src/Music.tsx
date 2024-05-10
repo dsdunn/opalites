@@ -8,7 +8,7 @@ export const Music = () => {
   return (
     <div id="music">
       <div className="flex justify-around align-center">
-        <div id="release-text" class="light-blue">
+        <div id="release-text" className="light-blue">
           <h3 className="uppercase">Dual Single Out Now!</h3>
           <h2>"Think About Me" | "Everyday"</h2>
         </div>
@@ -25,7 +25,7 @@ export const Music = () => {
         <a target="_blank" href="https://music.apple.com/us/artist/the-opalites/1727961912"><img src={AppleMusic}></img></a>
         <a target="_blank" href="https://theopalites.bandcamp.com/"><img src={BandCamp}/></a>
       </div>
-      <iframe style={{borderRadius: '12px'}} src="https://open.spotify.com/embed/artist/4Lv94Y3hWN7BtiEe7vzXVW?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe style={{borderRadius: '12px'}} src="https://open.spotify.com/embed/artist/4Lv94Y3hWN7BtiEe7vzXVW?utm_source=generator" width="100%" height="152" frameBorder="0" allowFullScreen={true} allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   )
 }

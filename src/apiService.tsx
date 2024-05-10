@@ -1,10 +1,11 @@
 import { CognitoIdentityProviderClient, InitiateAuthCommand } from "@aws-sdk/client-cognito-identity-provider"; // ES Modules import
+import { Band } from "./types";
 
 const client = new CognitoIdentityProviderClient({
   region: 'us-west-2'
 });
 
-export const getData = async (abortSignal) => {
+export const getData = async (abortSignal: AbortSignal) => {
  try {
    const response = await fetch('https://ozmjn512g9.execute-api.us-west-2.amazonaws.com/opalites');
   //  const response = await fetch('http://localhost:3000/opalites', { signal: abortSignal });
@@ -16,7 +17,7 @@ export const getData = async (abortSignal) => {
  }
 }
 
-export const putData = async (token, data) => {
+export const putData = async (token: string, data: Band) => {
   const options = {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -35,7 +36,7 @@ export const putData = async (token, data) => {
   }
 }
 
-export const loginUser = async ({username, password }) => {
+export const loginUser = async ({ username, password }: { username: string, password: string }) => {
   try {
     const command = new InitiateAuthCommand({
       AuthFlow: 'USER_PASSWORD_AUTH',

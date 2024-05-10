@@ -1,6 +1,7 @@
 import React from 'react';
+import { Show } from './types';
 
-export const Shows = ({ shows = [] }) => {
+export const Shows = ({ shows }: {shows: Show[] }) => {
   return (
     <ul id="shows">
       {shows.map(show => (
