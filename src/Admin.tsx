@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ShowForm } from './ShowForm'
 
 export const Admin = ({userName, band}) => {
-  const [selected, setSelected ] = useState('shows');
+  const [shows, setSelected ] = useState('shows');
+
+  useEffect(() => {
+    setShows(band.shows);
+  }, [])
 
 
   return (
@@ -14,9 +19,9 @@ export const Admin = ({userName, band}) => {
           <li className={selected === "shows" ? 'selected' : ''} onClick={() => setSelected('info')}>Info</li>
         </ul>
       </div>
-      {/* {selected === 'shows' &&
-        <AdminShows />
-      } */}
+      {selected === 'shows' &&
+        <ShowForm shows={shows} addShow={addShow} deleteShow={deleteShow} updateShow={updateShow}/>
+      }
     </div>
   )
 }
