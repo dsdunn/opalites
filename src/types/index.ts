@@ -3,8 +3,7 @@ type Date = string;
 export type Show = {
   id: string,
   date: Date,
-  time: '8pm',
-  image: null | string,
+  image: string,
   venue: string,
   title: string,
   url: string

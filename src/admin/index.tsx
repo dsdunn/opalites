@@ -1,32 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { ShowForm } from './ShowForm'
-import { Band, Show } from '../types';
-import { putData } from '../apiService';
+import { v4 as uuidv4 } from 'uuid';
+import '.'
 
-export const Admin = ({ userName, band, putData }: { userName: string, band: Band, putData: (band: Band) => void}) => {
+import { AdminShows } from './AdminShows';
+import { Band, Show } from '../types';
+
+export const Admin = ({ userName, band, putData, setBand }: 
+  { userName: string,
+    band: Band,
+    putData: (band: Band) => void,
+    setBand: (band: Band) => void
+  }) => {
   const [selected, setSelected] = useState('shows');
 
   const deleteShow = (showId: string) => {
-    console.log('delete: ', showId)
+    const newBand = {
+      ...band,
+      shows: band.shows.filter(show => show.id !== showId)
+    }
+
+    putData(newBand);
   };
 
   const addShow = (show: Show) => {
+    const newId = uuidv4();
     // do some checks?
     const newBand = {
       ...band,
       shows: [
         ...band.shows,
-        show
+        {
+          ...show,
+          id: newId
+        }
       ]
     }
-
+    
     putData(newBand);
   }
 
-  const updateShow = (show: Show) => {
-    const newShows = band.shows.filter(existingShow => show.id !== existingShow.id).push(show)
-  }
+  const updateShow = (newShow: Show) => {
+    const otherShows = band.shows.filter(existingShow => newShow.id !== existingShow.id);
+    const newBand = {
+      ...band,
+      shows: [...otherShows, newShow]
+    };
 
+    putData(newBand);
+  }
 
   return (
     <div id="admin">
@@ -39,7 +60,7 @@ export const Admin = ({ userName, band, putData }: { userName: string, band: Ban
         </ul>
       </div>
       {selected === 'shows' &&
-        <ShowForm shows={band.shows} addShow={addShow} deleteShow={deleteShow} updateShow={updateShow}/>
+        <AdminShows shows={band.shows} addShow={addShow} deleteShow={deleteShow} updateShow={updateShow} />
       }
     </div>
   )

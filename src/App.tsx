@@ -12,7 +12,7 @@ import { Login } from './Login';
 import { Admin } from './admin';
 import { band as seed_data } from './seed_data';
 
-import { getData as _getData, putData as _putData } from './apiService';
+import { getData as _getData, putData as _putData, getUser as _getUser } from './apiService';
 import { Band, SectionMap } from './types';
 
 function App() {
@@ -48,32 +48,38 @@ function App() {
 
   const getData = async (abortSignal: AbortSignal) => {
     const data = await _getData(abortSignal);
-
-    console.log(data);
-    setBand(data);
+    data && setBand(data);
   }
 
-  const getUser = (token: string) => {
-    console.log(token);
+  const getUser = async (token: string) => {
+    const user = await _getUser(token);
+    user && setUser(user);
   }
 
   const putData = async (band: Band) => {
-    const data = await _putData(user?.AccessToken, band);
-    console.log('put response: ', data)
+    const token = user.AccessToken;
+    try {
+      const response = await _putData(token, band);
+      setBand(band);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleSetUser = (user: any) => {
-    console.log(user);
     setUser(user);
-    localStorage.set('opalites_admin_token', user.AccessToken);
+    localStorage.setItem('opalites_admin_token', user.AccessToken);
   }
 
   useEffect( () => {
     const abortController = new AbortController();
     getData(abortController.signal);
 
-    const token = localStorage.get('opalites_admin_token');
-    token && getUser(token);
+    const token = localStorage.getItem('opalites_admin_token');
+    
+    if (token) {
+      getUser(token);
+    }
 
 
     return () => {
@@ -111,7 +117,7 @@ function App() {
       <h3 id="footer" className="neon-red" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to Top</h3>
       <p id="admin-login" className="neon-red" style={{textAlign: 'right'}} onClick={onOpen}>{user ? `Logout ${userName}` : 'Admin'}</p>
       <Login isOpen={isModalOpen} onClose={onClose} setUser={handleSetUser} setUserName={setUserName}/>
-      { user && band && <Admin userName={userName} band={band} putData={putData}/>}
+      { user && band && <Admin userName={userName} band={band} putData={putData} setBand={setBand}/>}
     </div>
   )
 }

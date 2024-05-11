@@ -1,7 +1,7 @@
-import { CognitoIdentityProviderClient, InitiateAuthCommand } from "@aws-sdk/client-cognito-identity-provider"; // ES Modules import
+import { CognitoIdentityProviderClient, InitiateAuthCommand, GetUserCommand } from "@aws-sdk/client-cognito-identity-provider"; // ES Modules import
 import { Band } from "./types";
 
-const client = new CognitoIdentityProviderClient({
+const cognitoClient = new CognitoIdentityProviderClient({
   region: 'us-west-2'
 });
 
@@ -47,7 +47,7 @@ export const loginUser = async ({ username, password }: { username: string, pass
       ClientId: '4sb4pk05206tebsb8um1o2ecr2',
     });
 
-    const authResult = await client.send(command);
+    const authResult = await cognitoClient.send(command);
 
     if (authResult?.$metadata?.httpStatusCode === 200) {
       return authResult.AuthenticationResult;
@@ -56,5 +56,15 @@ export const loginUser = async ({ username, password }: { username: string, pass
     console.log('no auth result');
   } catch (error) {
     console.log('login error: ', error)
+  }
+}
+
+export const getUser = async (token: string) => {
+  const command = new GetUserCommand({ AccessToken: token });
+
+  try {
+    return await cognitoClient.send(command);
+  } catch (e) {
+    console.log(e);
   }
 }

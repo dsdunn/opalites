@@ -1,0 +1,64 @@
+
+#admin {
+  min-height: 70vh;
+  color: aliceblue;
+
+  #admin-shows {
+    color: aliceblue;
+    font-size: 20px;
+
+
+    #add-show-button {
+      text-align: center;
+      cursor: pointer;
+      margin: 2em;
+      
+      span {
+        border: solid 1px aliceblue;
+        padding: 0.3em;
+      }
+    }
+  }
+
+  .show-card {
+    margin: 10px;
+    padding: 4px;
+    color: aliceblue;
+    font-size: 0.8em;
+
+    button {
+      margin: 15px;
+      font-size: 18px;
+      padding: 0.5em;
+    }
+  }
+
+  .show-form {
+    margin: 4em;
+    border-top: 1px solid aliceblue;
+
+    .show-input {
+      font-size: 24px;
+
+      label, .label {
+        width: 80%;
+        margin: .5em;
+        display: block;
+        
+        input {
+          font-size: 24px;
+          margin-left: 1.5em;
+          width: 100%;
+          background-color: gray;
+        }
+      }
+    }
+
+    button {
+      font-size: 24px;
+      padding: 0.75em;
+      cursor: pointer;
+    }
+  }
+  
+}

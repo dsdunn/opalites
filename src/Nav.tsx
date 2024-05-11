@@ -12,7 +12,7 @@ export const Nav = ({ select, selected }: { select: (section: string) => void, s
   }
 
   return (
-    <div id="nav">
+    <nav id="nav">
       <h3 className="neon-blue uppercase" onClick={toggleMenu}>Menu</h3>
       <ul className={`${menuOpen ? "expanded" : ""} flex flex-column justify-around tilt-neon neon-red`}>
         <li className={selected === "music" ? 'selected' : ''} onClick={() => handleClick('music')}>Music</li>
@@ -22,6 +22,6 @@ export const Nav = ({ select, selected }: { select: (section: string) => void, s
         <li className={selected === "gallery" ? 'selected' : ''} onClick={() => handleClick('gallery')}>Gallery</li>
         <li className={selected === "contact" ? 'selected' : ''} onClick={() => handleClick('contact')}>Contact</li>
       </ul>
-    </div>
+    </nav>
   )
 };

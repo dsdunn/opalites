@@ -1,21 +1,26 @@
-import React, { FormEvent, SyntheticEvent, useState } from 'react';
-import { Band, Show } from '../types';
+import { FormEvent, SyntheticEvent, useEffect, useState } from 'react';
+import { Show } from '../types';
 
-export const ShowForm = ({ shows, addShow, deleteShow, updateShow }: {
-  shows: Show[],
+export const ShowForm = ({ showToEdit, addShow, updateShow, handleCancel }: {
+  showToEdit: Show | null,
   addShow: (show: Show) => void,
-  deleteShow: (showId: string) => void,
-  updateShow: (show: Show) => void
+  updateShow: (show: Show) => void,
+  handleCancel: () => void
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Show>({
     date: '',
-    time: '',
     title: '',
     venue: '',
     url: '',
+    image: '',
+    id: ''
   });
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>)=> {
+  useEffect(() => {
+    showToEdit && setFormData(showToEdit);
+  }, [showToEdit])
+
+  const handleChange = (event: FormEvent<HTMLInputElement>)=> {
     const { name, value } = event.currentTarget;
     setFormData({
       ...formData,
@@ -33,28 +38,85 @@ export const ShowForm = ({ shows, addShow, deleteShow, updateShow }: {
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    if (showToEdit) {
+      updateShow(formData);
+    } else {
+      addShow(formData)
+    }
+
+    handleCancel();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Date:
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-        />
-      </label>
-      
-      <label>
-        Upload File:
-        {/* <input type="file" onChange={handleFileChange} /> */}
-      </label>
+    <form className="show-form" onSubmit={handleSubmit} style={{color: 'white'}}>
+      <div className="show-input">
+        <label>
+          <div className="label">Date & Time:</div>
+          <input
+            required
+            type="datetime-local"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            />
+        </label>
+      </div>
       <br />
-      <button type="submit">Submit</button>
+      <div className="show-input">
+        <label>
+        <div className="label"> Title:</div>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <br />
+        <div className="show-input">
+          <label>
+          <div className="label">Venue:</div>
+            <input
+              required
+              type="text"
+              name="venue"
+              value={formData.venue}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+      <br />
+      <div className="show-input">
+        <label>
+        <div className="label">URL/Link:</div>
+          <input
+            type="text"
+            name="url"
+            value={formData.url}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <br />
+      <div className="show-input">
+        <label>
+        <div className="label">Image Url:</div>
+          <input
+            type="text"
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <br />
+      {/* <label>
+        Upload File:
+        <input type="file" onChange={handleFileChange} />
+      </label> */}
+      <br />
+      <p><button type="submit">Submit</button><button onClick={() => handleCancel()}>Cancel</button></p>
     </form>
   );
 };
