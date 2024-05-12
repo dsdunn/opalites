@@ -1,4 +1,4 @@
-import { CognitoIdentityProviderClient, InitiateAuthCommand, GetUserCommand } from "@aws-sdk/client-cognito-identity-provider"; // ES Modules import
+import { CognitoIdentityProviderClient, InitiateAuthCommand, GetUserCommand, GlobalSignOutCommand } from "@aws-sdk/client-cognito-identity-provider"; // ES Modules import
 import { Band } from "./types";
 
 const cognitoClient = new CognitoIdentityProviderClient({
@@ -7,7 +7,7 @@ const cognitoClient = new CognitoIdentityProviderClient({
 
 export const getData = async (abortSignal: AbortSignal) => {
  try {
-   const response = await fetch('https://ozmjn512g9.execute-api.us-west-2.amazonaws.com/opalites');
+   const response = await fetch('https://ozmjn512g9.execute-api.us-west-2.amazonaws.com/opalites', { signal: abortSignal });
   //  const response = await fetch('http://localhost:3000/opalites', { signal: abortSignal });
    const result = response.json();
 
@@ -56,6 +56,17 @@ export const loginUser = async ({ username, password }: { username: string, pass
     console.log('no auth result');
   } catch (error) {
     console.log('login error: ', error)
+  }
+}
+
+export const logOutUser = async (token: string) => {
+const command = new GlobalSignOutCommand({ AccessToken: token });
+
+  try {
+    const response = await cognitoClient.send(command);
+    return response;
+  } catch (error) {
+    console.log(error);
   }
 }
 

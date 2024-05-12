@@ -5,12 +5,12 @@ import '.'
 import { AdminShows } from './AdminShows';
 import { Band, Show } from '../types';
 
-export const Admin = ({ userName, band, putData, setBand }: 
-  { userName: string,
-    band: Band,
-    putData: (band: Band) => void,
-    setBand: (band: Band) => void
-  }) => {
+export const Admin = ({ user, band, putData, setBand }: {
+  user: string,
+  band: Band,
+  putData: (band: Band) => void,
+  setBand: (band: Band) => void
+}) => {
   const [selected, setSelected] = useState('shows');
 
   const deleteShow = (showId: string) => {
@@ -35,12 +35,13 @@ export const Admin = ({ userName, band, putData, setBand }:
         }
       ]
     }
-    
+
     putData(newBand);
   }
 
   const updateShow = (newShow: Show) => {
     const otherShows = band.shows.filter(existingShow => newShow.id !== existingShow.id);
+
     const newBand = {
       ...band,
       shows: [...otherShows, newShow]

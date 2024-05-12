@@ -12,8 +12,9 @@ import { Login } from './Login';
 import { Admin } from './admin';
 import { band as seed_data } from './seed_data';
 
-import { getData as _getData, putData as _putData, getUser as _getUser } from './apiService';
+import { getData as _getData, putData as _putData, getUser as _getUser, logOutUser } from './apiService';
 import { Band, SectionMap } from './types';
+import { clearToken, getToken } from './helpers';
 
 function App() {
   const musicRef = useRef(null);
@@ -26,10 +27,19 @@ function App() {
   const [ band, setBand ] = useState<Band | null>(null);
   const [ section, setSection ] = useState<string>('');
   const [ isModalOpen, setIsModalOpen ] = useState<boolean>(false);
-  const [ user, setUser ] = useState<any>(null);
-  const [ userName, setUserName] = useState<string>('');
+  const [ user, setUser ] = useState<string>('');
 
-  const onOpen = () => setIsModalOpen(true);
+  const handleLoginLogout = () => {
+    if (user) {
+      window.confirm(`Are you sure you want to logout ${user}?`) && logOutUser(getToken());
+      setUser('');
+      clearToken();
+      setIsModalOpen(false);
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
   const onClose = () => setIsModalOpen(false);
 
   const sectionMap: SectionMap = {
@@ -39,48 +49,44 @@ function App() {
     bio: bioRef,
     gallery: galleryRef,
     contact: contactRef
-  }
+  };
 
   const select = (target: string) => {
     sectionMap[target]?.current?.scrollIntoView({behavior: 'smooth'});
     setSection(target);
-  }
+  };
 
   const getData = async (abortSignal: AbortSignal) => {
     const data = await _getData(abortSignal);
     data && setBand(data);
-  }
+  };
 
   const getUser = async (token: string) => {
-    const user = await _getUser(token);
-    user && setUser(user);
-  }
+    const userResponse = await _getUser(token);
+
+    const userName = userResponse?.Username;
+    setUser(userName || '');
+  };
 
   const putData = async (band: Band) => {
-    const token = user.AccessToken;
+    const token = getToken();
     try {
       const response = await _putData(token, band);
       setBand(band);
     } catch (error) {
       console.log(error);
     }
-  }
-
-  const handleSetUser = (user: any) => {
-    setUser(user);
-    localStorage.setItem('opalites_admin_token', user.AccessToken);
-  }
+  };
 
   useEffect( () => {
     const abortController = new AbortController();
     getData(abortController.signal);
 
-    const token = localStorage.getItem('opalites_admin_token');
+    const token = getToken();
     
     if (token) {
       getUser(token);
     }
-
 
     return () => {
       abortController.abort();
@@ -115,11 +121,11 @@ function App() {
       <h2 id="contact-link" className="neon-blue section-header">Contact: <a className="light-blue" href="mailto: theopalitesmusic@gmail.com">theopalitesmusic@gmail.com</a></h2>
       <SocialLinks/>
       <h3 id="footer" className="neon-red" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to Top</h3>
-      <p id="admin-login" className="neon-red" style={{textAlign: 'right'}} onClick={onOpen}>{user ? `Logout ${userName}` : 'Admin'}</p>
-      <Login isOpen={isModalOpen} onClose={onClose} setUser={handleSetUser} setUserName={setUserName}/>
-      { user && band && <Admin userName={userName} band={band} putData={putData} setBand={setBand}/>}
+      <p id="admin-login" className="neon-red pointer" style={{textAlign: 'right'}} onClick={handleLoginLogout}>{user ? `Logout ${user}` : 'Admin'}</p>
+      <Login isOpen={isModalOpen} onClose={onClose} getUser={getUser}/>
+      { user && band && <Admin user={user} band={band} putData={putData} setBand={setBand}/>}
     </div>
-  )
+  );
 }
 
 export default App

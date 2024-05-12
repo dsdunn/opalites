@@ -1,21 +1,22 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { loginUser } from './apiService';
 
-export const Login = ({ isOpen, onClose, setUser, setUserName }: {
+// Login Modal
+export const Login = ({ isOpen, onClose, getUser }: {
   isOpen: boolean,
   onClose: () => void,
-  setUser: (user: any) => void,
-  setUserName: (name: string) => void
+  getUser: (token: string) => void
 }) => {
-  const [username, _setUsername] = useState('');
+  const [username, _setUser] = useState('');
   const [password, _setPassword] = useState('');
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const userAuth = await loginUser({ username, password });
-    userAuth && setUser(userAuth)
-    console.log(username);
-    setUserName(username);
+
+    userAuth?.AccessToken && localStorage.setItem('opalites_admin_token', userAuth.AccessToken);
+
+    getUser(userAuth?.AccessToken || '');
     onClose(); 
   };
 
@@ -32,7 +33,7 @@ export const Login = ({ isOpen, onClose, setUser, setUserName }: {
             <input
               type="text"
               value={username}
-              onChange={e => _setUsername(e.target.value)}
+              onChange={e => _setUser(e.target.value)}
               required
             />
           </div>

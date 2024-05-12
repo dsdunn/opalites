@@ -22,6 +22,7 @@ export const ShowForm = ({ showToEdit, addShow, updateShow, handleCancel }: {
 
   const handleChange = (event: FormEvent<HTMLInputElement>)=> {
     const { name, value } = event.currentTarget;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -54,11 +55,16 @@ export const ShowForm = ({ showToEdit, addShow, updateShow, handleCancel }: {
           <div className="label">Date & Time:</div>
           <input
             required
-            type="datetime-local"
+            type="date"
             name="date"
-            value={formData.date}
+            value={formData.date.split('T')[0]}
             onChange={handleChange}
-            />
+          />
+          <input
+            type="time"
+            name="time"
+            value={ showToEdit ? showToEdit.date?.split('T')[1] : '19:00'}
+          />
         </label>
       </div>
       <br />

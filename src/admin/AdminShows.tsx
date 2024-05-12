@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from 'react';
 import './admin.scss';
 import { Show } from '../types'
 import { ShowForm } from './ShowForm';
+import { compareShowDates } from '../helpers';
 
 export const AdminShows = ({ shows, addShow, updateShow, deleteShow }: {
   shows: Show[],
@@ -19,7 +20,6 @@ export const AdminShows = ({ shows, addShow, updateShow, deleteShow }: {
 
   const handleDeleteShow = (show: Show) => {
     const { id, title } = show;
-    console.log('delete');
     window.confirm(`Are you sure you want to delete the show: ${title}?`) && deleteShow(id);
   }
 
@@ -35,7 +35,7 @@ export const AdminShows = ({ shows, addShow, updateShow, deleteShow }: {
         <p><span>Venue: </span><span>{show.venue}</span></p>
         <p><span>Title: </span><span>{show.title}</span></p>
         <p><span>url: </span><span>{show.url}</span></p>
-        <p><span>image: </span><span>{show.image}</span></p>
+        <p><span>image: </span><img src={show.image} height="50px" width="50px"/></p>
         <section>
           <button onClick={() => handleEditShow(show)}>Edit</button>
           <button onClick={() => handleDeleteShow(show)}>Delete</button>
@@ -48,7 +48,7 @@ export const AdminShows = ({ shows, addShow, updateShow, deleteShow }: {
     <section id="admin-shows">
       <h3 id="add-show-button" onClick={() => setIsEditing(true)}><span>Add a New Show!</span></h3>
       { isEditing && <ShowForm showToEdit={showToEdit} addShow={addShow} updateShow={updateShow} handleCancel={handleCancel}/> }
-      { !isEditing && shows.map(show => {
+      { !isEditing && shows.sort(compareShowDates).map(show => {
           return renderShowCard(show);
         })
       }
