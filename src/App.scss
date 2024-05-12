@@ -329,10 +329,44 @@ p {
   margin: auto;
   padding-left: 15%;
 
-  .show-date {
-    font-weight: 400;
-    font-size: 3rem;
-    margin: auto 2em;
+  .show {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-top: 1.5em;
+
+    .show-left-side {
+      flex-grow: 1;
+
+      h2, h3 {
+        margin: 0 auto 0.3em;
+      }
+
+      .show-date {
+        margin-right: .5em;
+      }
+    
+      .show-time {
+        font-size: 0.5em;
+      }
+    }
+
+    .show-right-side {
+      max-width: 80vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 1em;
+
+      img {
+        max-width: 150px;
+        max-height: 150px;
+        cursor: zoom-in;
+      }
+
+      .show-title {
+        text-align: left;
+      }
+    }
   }
 }
   
@@ -370,7 +404,8 @@ p {
 }
 
 #admin-login {
-  margin: 8em auto;
+  margin-top: 8em;
+  margin-right: 1em;
 }
 
 #admin {
@@ -505,22 +540,26 @@ form h2 {
     padding-left: 0;
 
     .show {
-      flex-wrap: nowrap;
-    }
+      grid-template-columns: 1fr 2fr;
+      
+      .show-right-side {
+        flex-direction: row-reverse;
 
-    h2 {
+        img {
+          max-height: 120px;
+          margin-left: 10px;
+        }
+      }
+      
+      h2 {
       font-size: 1em;
       margin: 0;
     }
-
+    
     h3 {
       font-size: .8em;
     }
-
-    .show-date {
-      margin: auto .5em;
-      font-size: 1em;
-    }
+  }
   }
 
   #bio {
