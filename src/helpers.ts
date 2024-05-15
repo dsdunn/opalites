@@ -3,7 +3,7 @@ import { Show } from "./types";
 export const parseReadableDate = (_date: Date) => {
   const date = new Date(_date);
   const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const day = date.getDate() + 1;
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let ampm = hours >= 12 ? 'pm' : 'am';
